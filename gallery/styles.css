@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap'); 
+
+:root {
+  --image-1: 'https://mobimg.b-cdn.net/v3/fetch/7b/7b1b9ce1e334c868019613f72eee10ba.jpeg';
+  --image-2: 'https://krasivosti.pro/uploads/posts/2021-04/1617900172_4-p-khishchnii-kot-5.jpg';
+  --image-3: 'https://img2.goodfon.com/original/1920x1080/8/74/rys-koshka-tambako-the-jaguar.jpg';
+  --image-4: 'https://funart.pro/uploads/posts/2021-04/1618261197_32-p-detenishi-dikikh-zhivotnikh-zhivotnie-kras-42.jpg';
+  --image-5: 'https://image.winudf.com/v2/image1/Y29tLmx1eC5saXZlLndhbGxwYXBlcnMuYW5kLmNyZWF0aXZlLmZhY3Rvcnkud2FsbHBhcGVycy5iYWNrZ3JvdW5kcy5oZC5sd3AubGlvbi5saXZlLndhbGxwYXBlcl9zY3JlZW5fMTBfMTU1NDgxMzEyMF8wNzA/screen-10.jpg?fakeurl=1&type=.jpg';
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Muli', sans-serif;
+  overflow: hidden;
+  margin: 0;
+  background: url('https://cdn.suwalls.com/wallpapers/animals/giraffe-silhouette-21333-1920x1080.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  padding: 0 20px;
+}
+
+.slide {
+  height: 80vh;
+  border-radius: 20px;
+  margin: 10px;
+  cursor: pointer;
+  color: #fff;
+  flex: 1;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  transition: all 500ms ease-in-out;
+}
+
+.header {
+  position: absolute;
+  font-size: 20px;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+}
+
+.slide_active {
+  flex: 10;
+}
+
+.slide_active .header {
+  opacity: 1;
+  transition: opacity 0.3s ease-out;  
+}
