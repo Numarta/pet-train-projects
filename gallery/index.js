@@ -1,20 +1,45 @@
-"use strict";
-const slides = document.querySelectorAll('.slide');
-const headers = document.querySelectorAll('.header');
-const styles = document.querySelector(':root');
-let counter = 1;
-function clearActiveClasses() {
-    slides.forEach((slide) => {
-        slide.classList.remove('slide_active');
-    });
+const downButton = document.querySelector('.down-button');
+const upButton = document.querySelector('.up-button');
+const sidebar = document.querySelector('.sidebar');
+const mainSlide = document.querySelector('.main-slide');
+const slidesCount = mainSlide.querySelectorAll('div').length;
+const container = document.querySelector('.container');
+
+let activeSlideIndex = 0;
+
+sidebar.style.top = `-${(slidesCount - 1) * 100}vh`;
+
+function changeSlide(direction) {
+  if (direction === 'up') {
+    activeSlideIndex++;
+    if (activeSlideIndex === slidesCount) {
+      activeSlideIndex = 0;
+    }
+  } else if (direction === 'down') {
+    activeSlideIndex--;
+    if (activeSlideIndex < 0) {
+      activeSlideIndex = slidesCount - 1;
+    }
+  }
+
+  const height = container.clientHeight;
+
+  mainSlide.style.transform = `translateY(-${activeSlideIndex * height}px)`;
+  sidebar.style.transform = `translateY(${activeSlideIndex * height}px)`;
 }
-slides.forEach((elem) => {
-    const numb = `--image-${counter}`;
-    elem.style.backgroundImage = `url(${getComputedStyle(styles).getPropertyValue(numb)})`;
-    counter++;
-    elem.addEventListener('click', () => {
-        console.log(elem);
-        clearActiveClasses();
-        elem.classList.add('slide_active');
-    });
+
+downButton.addEventListener('click', () => {
+  changeSlide('down');
+});
+
+upButton.addEventListener('click', () => {
+  changeSlide('up');
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowUp') {
+    changeSlide('up');
+  } else if (event.key === 'ArrowDown') {
+    changeSlide('down');
+  }
 });

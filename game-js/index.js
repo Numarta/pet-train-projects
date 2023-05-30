@@ -1,6 +1,7 @@
 "use strict";
 const board = document.querySelector('#board');
 const SQUARES_NUMBER = 500;
+const colors = ['red', 'green', 'yellow', 'blue', 'purple', 'orange', 'white'];
 for (let i = 0; i < SQUARES_NUMBER; i++) {
     const square = document.createElement('div');
     square.className = 'square';
@@ -13,8 +14,15 @@ for (let i = 0; i < SQUARES_NUMBER; i++) {
     board?.appendChild(square);
 }
 function setColor(element) {
-    element.style.backgroundColor = 'red';
+    const colorSquare = getRandomColor();
+    element.style.backgroundColor = colorSquare;
+    element.style.boxShadow = `0 0 2px ${colorSquare}, 0 0 10px ${colorSquare}`;
 }
 function removeColor(element) {
     element.style.backgroundColor = '#1d1d1d';
+    element.style.boxShadow = '0 0 2px #000';
+}
+function getRandomColor() {
+    const colorIndex = Math.floor(Math.random() * colors.length);
+    return colors[colorIndex];
 }
